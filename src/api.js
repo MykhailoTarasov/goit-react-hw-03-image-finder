@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 export const fechServisSearchImg = async (searchValue, currentPage) => {
   const params = new URLSearchParams({
-    key: '39374668-f88656bb573bc9cce8695791a',
+    key: '41205519-54909192cb32ba9a04be139b9',
     q: searchValue,
     image_type: 'photo',
     orientation: 'horizontal',

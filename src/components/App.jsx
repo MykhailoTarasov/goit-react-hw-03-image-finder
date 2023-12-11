@@ -1,74 +1,18 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
-import { Layout } from './Layout';
-import SearchBar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import Loader from './Loader/Loader';
-import { fechServisSearchImg } from 'api';
-import Button from './Button/Button';
 
 class App extends Component {
   state = {
-    items: [],
-    query: '',
+    gallery: [],
+    searchValue: '',
     page: 1,
-    loading: false,
-    loadMore: false,
+    isLoading: false,
     error: false,
+    loadMore: false,
   };
 
-  handleSubmit = searchName => {
-    this.setState(() => ({
-      query: searchName,
-      items: [],
-      page: 1,
-      loadMore: false,
-    }));
-  };
-
-  handleButton = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
-  };
-
-  async componentDidUpdate(prevProps, prevState) {
-    const { query, page } = this.state;
-    try {
-      if (prevState.query !== query || page !== prevState.page) {
-        this.setState({ loading: true, error: false });
-        const searchImg = await fechServisSearchImg(query, page);
-
-        this.setState({
-          items:
-            page === 1
-              ? searchImg.hits
-              : [...prevState.items, ...searchImg.hits],
-          loading: false,
-          error: false,
-          loadMore: page < Math.ceil(searchImg.totalHits / 12),
-        });
-      }
-    } catch (error) {
-      this.setState({ error: true, loading: false });
-    }
-  }
-
-  render() {
-    const { items, loading, error, loadMore } = this.state;
-
-    return (
-      <Layout>
-        <SearchBar onSubmit={this.handleSubmit} />
-
-        {items.length > 0 && <ImageGallery galleryItems={items} />}
-
-        {loading && items.length === 0 && <Loader />}
-
-        {loadMore && <Button onClickButton={this.handleButton} />}
-
-        {error && <span>Error! Please, reload this page!</span>}
-      </Layout>
-    );
-  }
+  
 }
+
 
 export default App;
