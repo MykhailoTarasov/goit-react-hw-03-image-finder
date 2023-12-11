@@ -10,7 +10,7 @@ import Button from './Button/Button';
 class App extends Component {
   state = {
     items: [],
-    searchValue: '',
+    query: '',
     page: 1,
     loading: false,
     loadMore: false,
@@ -19,7 +19,7 @@ class App extends Component {
 
   handleSubmit = searchName => {
     this.setState(() => ({
-      searchValue: searchName,
+      query: searchName,
       items: [],
       page: 1,
       loadMore: false,
@@ -31,11 +31,11 @@ class App extends Component {
   };
 
   async componentDidUpdate(prevProps, prevState) {
-    const { searchValue, page } = this.state;
+    const { query, page } = this.state;
     try {
-      if (prevState.searchValue !== searchValue || page !== prevState.page) {
+      if (prevState.query !== query || page !== prevState.page) {
         this.setState({ loading: true, error: false });
-        const searchImg = await fechServisSearchImg(searchValue, page);
+        const searchImg = await fechServisSearchImg(query, page);
 
         this.setState({
           items:
@@ -44,7 +44,7 @@ class App extends Component {
               : [...prevState.items, ...searchImg.hits],
           loading: false,
           error: false,
-          loadMore: this.state.page < Math.ceil(searchImg.totalHits / 12),
+          loadMore: page < Math.ceil(searchImg.totalHits / 12),
         });
       }
     } catch (error) {
@@ -63,7 +63,7 @@ class App extends Component {
 
         {loading && items.length === 0 && <Loader />}
 
-        {loadMore && <Button onClickButton={this.handlerButton} />}
+        {loadMore && <Button onClickButton={this.handleButton} />}
 
         {error && <span>Error! Please, reload this page!</span>}
       </Layout>

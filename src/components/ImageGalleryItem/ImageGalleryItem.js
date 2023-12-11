@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Modal from 'react-modal';
+import { Modal } from 'components/Modal/Modal';
 
 const customStyles = {
   content: {
@@ -11,8 +11,6 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
   },
 };
-
-Modal.setAppElement('#root');
 
 class ImageGalleryItem extends Component {
   state = {
@@ -30,7 +28,7 @@ class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { id, webformatURL, tags, largeImageURL } = this.props.searchImage;
+    const { id, webformatURL, tags, largeImageURL } = this.props.image;
     const { isModalOpen } = this.state;
 
     return (

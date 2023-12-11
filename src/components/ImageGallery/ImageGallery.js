@@ -3,10 +3,12 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 const ImageGallery = ({ galleryItems }) => {
   return (
     <ul>
-      {galleryItems.map(item => (
-        <ImageGalleryItem key={item.id} searchImage={item}/>
-      ))}
-    </ul>
+    {galleryItems.map(item => (
+      <li key={item.id}>
+        <ImageGalleryItem image={item} />
+      </li>
+    ))}
+  </ul>
   );
 };
 
