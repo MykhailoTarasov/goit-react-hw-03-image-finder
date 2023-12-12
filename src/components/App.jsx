@@ -3,6 +3,7 @@ import { Layout } from './Layout';
 import SearchBar from './Searchbar/Searchbar';
 import { fetchImages } from 'api';
 import ImageGallery from './ImageGallery/ImageGallery';
+import Button from './Button/Button';
 
 class App extends Component {
   state = {
@@ -23,28 +24,29 @@ class App extends Component {
     });
   };
 
+  handleButton = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  }
+
   async componentDidUpdate(prevProps, prevState) {
     const { query, page } = this.state;
 
     try {
       if (prevState.query !== query || prevState.page !== page) {
-        this.setState({ isLoading: true });
+        this.setState({ isLoading: true, error: false });
         const visibleImages = await fetchImages(query, page);
         this.setState({
           images:
             page === 1
               ? visibleImages.hits
               : [...prevState.images, ...visibleImages.hits],
-          loading: false,
+          isLoading: false,
           error: false,
           loadMore: this.state.page < Math.ceil(visibleImages.totalHits / 12),
         });
-        if (visibleImages.totalHits === 0) {
-          alert('Unfortunately, your search returned no results');
-        }
       }
     } catch (error) {
-      alert('Please reload the page');
+      this.setState({ error: true, isLoading: false });
     }
   }
 
@@ -55,6 +57,7 @@ class App extends Component {
       <Layout>
         <SearchBar onSubmit={this.handleSearch} />
         <ImageGallery items={images}/>
+        <Button onButtonClick={this.handleButton}/>
       </Layout>
     );
   }
