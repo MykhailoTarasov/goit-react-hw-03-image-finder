@@ -4,8 +4,8 @@ const SearchBar = ({ onSubmit }) => {
       <form
         onSubmit={evt => {
           evt.preventDefault();
-          const { searchQuery } = evt.target.elements;
-          onSubmit(searchQuery.value);
+          
+          onSubmit(evt.target.elements.value);
           evt.target.reset();
         }}
       >
