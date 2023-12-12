@@ -59,7 +59,7 @@ class App extends Component {
         {images.langth > 0 && <ImageGallery items={images} />}
         
         {isLoading && <Loader />}
-        {loadMore && <Button onClickButton={this.handleButton} />}
+        {loadMore && <Button onButtonClick={this.handleButton} />}
         <Toaster position="top-right" />
       </Layout>
     );
