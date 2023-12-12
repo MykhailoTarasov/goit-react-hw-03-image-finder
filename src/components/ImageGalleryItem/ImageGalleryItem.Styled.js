@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledItem = styled.li`
-  border-radius: 5px;
+  
 `;
 
 export const StyledImage = styled.img`
