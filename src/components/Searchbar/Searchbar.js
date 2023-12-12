@@ -1,7 +1,10 @@
+
+import { Header, StyledButton, StyledForm, StyledIcon, StyledInput } from './Searchbar.Styled';
+
 const SearchBar = ({ onSubmit }) => {
   return (
-    <header>
-      <form
+    <Header>
+      <StyledForm
         onSubmit={evt => {
           evt.preventDefault();
 
@@ -9,17 +12,19 @@ const SearchBar = ({ onSubmit }) => {
           evt.target.reset();
         }}
       >
-        <button type="submit">
-          <span>Search</span>
-        </button>
+      
+          <StyledButton type="submit">
+            <StyledIcon />
+          </StyledButton>
+        
 
-        <input
+        <StyledInput
           name="searchQuery"
           type="text"
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </StyledForm>
+    </Header>
   );
 };
 

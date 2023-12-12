@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Layout } from './Layout';
+import { Layout, StyledError } from './Layout';
 import SearchBar from './Searchbar/Searchbar';
 import { fetchImages } from 'api';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -51,15 +51,16 @@ class App extends Component {
   }
 
   render() {
-    const { images, loadMore, isLoading } = this.state;
+    const { images, loadMore, isLoading, error } = this.state;
 
     return (
       <Layout>
         <SearchBar onSubmit={this.handleSearch} />
-        {images.langth > 0 && <ImageGallery items={images} />}
+        {images.length > 0 && <ImageGallery items={images} />}
         
         {isLoading && <Loader />}
         {loadMore && <Button onButtonClick={this.handleButton} />}
+        {error && <StyledError>Whoops... Error! Please, reload this page!</StyledError>}
         <Toaster position="top-right" />
       </Layout>
     );
