@@ -1,5 +1,5 @@
-const ImageGalleryItem = () => {
-  const { id, webformatURL, tags } = this.props.item;
+const ImageGalleryItem = ({item}) => {
+  const { id, webformatURL, tags } = item;
 
   return (
     <li key={id}>

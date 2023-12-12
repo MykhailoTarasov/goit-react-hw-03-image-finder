@@ -1,3 +1,5 @@
+
+
 const SearchBar = ({ onSubmit }) => {
   return (
     <header>
@@ -5,7 +7,7 @@ const SearchBar = ({ onSubmit }) => {
         onSubmit={evt => {
           evt.preventDefault();
           
-          onSubmit(evt.target.elements.value);
+          onSubmit(evt.target.elements.searchQuery.value);
           evt.target.reset();
         }}
       >
@@ -13,14 +15,11 @@ const SearchBar = ({ onSubmit }) => {
           <span>Search</span>
         </button>
 
-        <input
-          name="searchQuery"
-          type="text"
-          placeholder="Search images and photos"
-        />
+        <input type="text" placeholder="Search images and photos" />
       </form>
     </header>
   );
 };
 
 export default SearchBar;
+

@@ -5,7 +5,7 @@ import { fetchImages } from 'api';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 class App extends Component {
   state = {
@@ -37,16 +37,13 @@ class App extends Component {
       if (prevState.query !== query || prevState.page !== page) {
         this.setState({ isLoading: true, error: false });
         const visibleImages = await fetchImages(query, page);
-        this.state.toast.success('Images found successfully!');
-        this.setState({
-          images:
-            page === 1
-              ? visibleImages.hits
-              : [...prevState.images, ...visibleImages.hits],
+        toast.success('Images found successfully!');
+        this.setState(prevState => ({
+          images: [...prevState.images, ...visibleImages.hits],
           isLoading: false,
           error: false,
           loadMore: this.state.page < Math.ceil(visibleImages.totalHits / 12),
-        });
+        }));
       }
     } catch (error) {
       this.setState({ error: true, isLoading: false });
@@ -59,7 +56,8 @@ class App extends Component {
     return (
       <Layout>
         <SearchBar onSubmit={this.handleSearch} />
-        <ImageGallery items={images} />
+        {images.langth > 0 && <ImageGallery items={images} />}
+        
         {isLoading && <Loader />}
         {loadMore && <Button onClickButton={this.handleButton} />}
         <Toaster position="top-right" />
