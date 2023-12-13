@@ -7,10 +7,7 @@ export const Header = styled.header`
   align-items: center;
 
   background-color: #b6ddd8;
-
   min-height: 60px;
-  margin-right: auto;
-  margin-left: auto;
   margin-bottom: 10px;
   width: 1200px;
 
@@ -20,11 +17,9 @@ export const Header = styled.header`
 `;
 
 export const StyledForm = styled.form`
-  
   display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
+  
+  width: 350px;
   background-color: ;
   border-radius: 4px;
 
@@ -38,7 +33,7 @@ export const StyledInput = styled.input`
   border: none;
   outline: none;
   padding-left: 30px;
-  padding-right: 10px;
+  
   border-radius: 4px;
   color: #5b5b5b;
   background-color: #d3f0ed;
