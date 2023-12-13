@@ -7,5 +7,9 @@ list-style: none;
 display: flex;
 gap: 9px 9px;
 flex-wrap: wrap;
+margin-left: auto;
+margin-right: auto;
+
 
 `
+

@@ -27,6 +27,7 @@ export const StyledForm = styled.form`
   max-width: 400px;
   background-color: ;
   border-radius: 4px;
+
 `;
 
 export const StyledInput = styled.input`
@@ -47,8 +48,8 @@ export const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
+  width: 27px;
+  height: 27px;
   margin: 0;
   padding: 0;
 

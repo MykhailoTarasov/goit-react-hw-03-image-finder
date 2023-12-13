@@ -13,6 +13,7 @@ margin-left: auto;
 margin-right: auto;
 max-width: 1200px;
 
+
 `
 
 export const StyledError = styled.span`
