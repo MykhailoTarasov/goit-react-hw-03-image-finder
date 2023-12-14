@@ -1,8 +1,9 @@
 import { Hourglass } from 'react-loader-spinner';
+import { StyledLoader } from './Loader.Styled';
 
 const Loader = () => {
     return (
-        <div>
+        <StyledLoader>
             <Hourglass
             visible={true}
             height="80"
@@ -12,7 +13,7 @@ const Loader = () => {
             wrapperClass=""
             colors={['#b6ddd8', '#b6ddd8']}
           />
-        </div>
+        </StyledLoader>
     )
 }
 
